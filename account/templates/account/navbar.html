@@ -1,0 +1,140 @@
+{% load static %}
+{% block content %}
+<nav class="navbar" style="background-color:#4157fcf8;">
+    <div class="container-fluid">
+        <a class="navbar-brand " href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" alt="Left Logo"
+                class="navbar-logo "></a>
+        <a href="{% url 'home' %}" class="navbar-brand fs-1 badge  text-wrap">C.S.T.L</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Trans</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admine' %}">admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">تسجيل وسيلة النقل</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            ارسال طرود
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'request' %}">ارسال طرد محلي</a></li>
+                            <li><a class="dropdown-item" href="{% url 'europ' %}">ارسال طرد دولي</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
+
+
+<!--
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-theme="light">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+      </div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 class="fs-6 text-start fw-bold d-none d-md-block">بلاغ صحفي بخصوص تسوية وضعية المركبات ذات نفس الصنف التي
+            يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنا</h1>
+          <h1 class="fs-6 text-start fw-bold d-md-none">بلاغ صحفي بخصوص تسوية وضعية المركبات</h1>
+          <p class="opacity-75 fs-6 text-start d-none d-md-block">
+            10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل
+            واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات نفس الصنف التي يتراوح وزنها الإجمالي محملة ما
+            بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر البوابة الالكترونية المحدثة لهذه الغاية.
+          </p>
+          <p class="opacity-75 fs-6 text-start d-md-none">10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية
+            لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات
+            نفس الصنف التي يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر
+            البوابة الالكترونية المحدثة لهذه الغاية.</p>
+          <p><a class="btn btn-lg btn-primary"
+              href="http://www.transport.gov.ma/AR/logistique/Actualites/Pages/Actualites.aspx?IdNews=3858"
+              target="_blank"> اكتشف</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item active" data-bs-interval="10000" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+      </div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 class="fs-6 text-start fw-bold d-none d-md-block">بلاغ صحفي بخصوص تسوية وضعية المركبات ذات نفس الصنف التي
+            يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنا</h1>
+          <h1 class="fs-6 text-start fw-bold d-md-none">بلاغ صحفي بخصوص تسوية وضعية المركبات</h1>
+          <p class="opacity-75 fs-6 text-start d-none d-md-block">
+            10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل
+            واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات نفس الصنف التي يتراوح وزنها الإجمالي محملة ما
+            بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر البوابة الالكترونية المحدثة لهذه الغاية.
+          </p>
+          <p class="opacity-75 fs-6 text-start d-md-none">10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية
+            لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات
+            نفس الصنف التي يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر
+            البوابة الالكترونية المحدثة لهذه الغاية.</p>
+          <p><a class="btn btn-lg btn-primary"
+              href="http://www.transport.gov.ma/AR/logistique/Actualites/Pages/Actualites.aspx?IdNews=3858"
+              target="_blank"> اكتشف</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item active" data-bs-interval="20000" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+      </div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 class="fs-6 text-start fw-bold d-none d-md-block">بلاغ صحفي بخصوص تسوية وضعية المركبات ذات نفس الصنف التي
+            يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنا</h1>
+          <h1 class="fs-6 text-start fw-bold d-md-none">بلاغ صحفي بخصوص تسوية وضعية المركبات</h1>
+          <p class="opacity-75 fs-6 text-start d-none d-md-block">
+            10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل
+            واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات نفس الصنف التي يتراوح وزنها الإجمالي محملة ما
+            بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر البوابة الالكترونية المحدثة لهذه الغاية.
+          </p>
+          <p class="opacity-75 fs-6 text-start d-md-none">10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية
+            لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات
+            نفس الصنف التي يتراوح وزنها الإجمالي محملة ما بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر
+            البوابة الالكترونية المحدثة لهذه الغاية.</p>
+          <p><a class="btn btn-lg btn-primary"
+              href="http://www.transport.gov.ma/AR/logistique/Actualites/Pages/Actualites.aspx?IdNews=3858"
+              target="_blank"> اكتشف</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">السابق</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">التالي</span>
+  </button>
+</div>
+-->

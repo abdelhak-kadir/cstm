@@ -1,0 +1,180 @@
+{% extends "account/main.html" %}
+{% load static %}
+
+{% block content %}
+<!---->
+<div id="myCarousel" class=" carousel slide" data-bs-ride="carousel" data-bs-theme="light">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+
+      </div>
+      <div class="container ">
+        <div class="carousel-caption ">
+          <h1 class="fs-6 text-start ">بلاغ صحفي بخصوص تسوية وضعية المركبات ذات نفس الصنف التي يتراوح وزنها الإجمالي
+            محملة ما بين
+            3.5 و19 طنا
+          </h1>
+          <p class="opacity-75 fs-6 text-start">
+            10.07.2023 | في إطار تفعيل التزاماتها مع التمثيليات المهنية لقطاع النقل الطرقي للبضائع، تعلن وزارة النقل
+            واللوجيستيك أنه سيتم الشروع في عملية تسوية وضعية المركبات ذات نفس الصنف التي يتراوح وزنها الإجمالي محملة ما
+            بين 3.5 و19 طنًا، وذلك ابتداء من تاريخ 14 يوليوز 2023 عبر البوابة الالكترونية المحدثة لهذه الغاية.
+          </p>
+          <p><a class="btn btn-lg btn-primary"
+              href="http://www.transport.gov.ma/AR/logistique/Actualites/Pages/Actualites.aspx?IdNews=3858"
+              target="_blank"> اكتشف</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="20000" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+
+      </div>
+      <div class="container">
+        <div class="carousel-caption  ">
+          <h1 class="fs-6 text-start">عنوان مثال آخر.</h1>
+          <p class="fs-6 text-start">حسب المجلس الثقافي البريطاني فإن تعليم الإنجليزية داخل بريطانيا يسهم في تعزيز
+            اقتصادها بما
+            يتجاوز
+            ملياري
+            جنيه سنوياً، كما أنه وفر أكثر من 26 ألف وظيفة.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">أعرف أكثر</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item" style="background-color:#69747f;">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/logo1.png' %}" alt="">
+
+      </div>
+      <div class="container">
+        <div class="carousel-caption ">
+          <h1 class="fs-6 text-start">واحد أكثر لقياس جيد.</h1>
+          <p class="fs-6 text-start">الإحصاءات لحجم الاستثمار اللغوي خارج بريطانيا تتفاوت من سنة لأخرى إلا أن المدير
+            التنفيذي
+            للمجلس
+            الثقافي
+            البريطاني إدي بايرز يرى أن استثمار تعليم الإنجليزية في الخارج لا يحسب على المستوى المالي فحسب بل
+            على
+            المستوى السياسي أيضاً.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">تصفح المعرض</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">السابق</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">التالي</span>
+  </button>
+</div>
+
+<main>
+  <div class="container ">
+    <h2 class="text-center">المعلومات الرئيسية عن النقل والخدمات اللوجستية</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>المواضيع</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>نقل المواد التي يسرع إليها التلف</td>
+          <td><a href="{% static 'pdf/PDF1.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>آلات نقل المواد التي يسرع إليها التلف</td>
+          <td><a href="{% static 'pdf/PDF2.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>الاتفاقية حول عقد النقل الدولي للبضائع بالطرق</td>
+          <td><a href="{% static 'pdf/PDF3.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>العقد النموذجي لنقل البضائع عبر الطرق</td>
+          <td><a href="{% static 'pdf/PDF4.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>الكرونوتاكيغراف الرقمي</td>
+          <td><a href="{% static 'pdf/PDF5.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>النقل الخاص الجماعي للأشخاص</td>
+          <td><a href="{% static 'pdf/PDF6.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>قرار رقم 2675.14 : يتعلق بالصهاريج، والحاويات والخزانات المستعملة كوعاء للقياس</td>
+          <td><a href="{% static 'pdf/PDF7.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>دفتر التحملات المتعلق باستغلال خدمات النقل المزدوج بالعالم القروي</td>
+          <td><a href="{% static 'pdf/PDF8.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>دفتر التحملات المتعلق بالنقل المدرسي لحساب الغير</td>
+          <td><a href="{% static 'pdf/PDF9.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>قرار رقم 5073 مميزات وشروط تهيئة سيارات النقل السياحي واستغلالها</td>
+          <td><a href="{% static 'pdf/PDF10.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>نقل الأشياء</td>
+          <td><a href="{% static 'pdf/PDF11.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>نقل البضائع الخطرة عبر الطرق</td>
+          <td><a href="{% static 'pdf/PDF12.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+        <tr>
+          <td>نقل البضائع للحساب الخاص وللحساب الغير</td>
+          <td><a href="{% static 'pdf/PDF13.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container marketing">
+    <main class="mt-5 mb-5 ">
+      <div class="container marketing ">
+        <div class="row ">
+          <div class="col-lg-4 border border-secondary-subtle">
+            <img class="mx-auto d-block" width="100" height="100"
+              src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-driver-manufacture-process-inipagistudio-mixed-inipagistudio.png"
+              alt="" />
+
+            <h2 class="fs-4 fw-medium pt-3 pb-3">سجل وسيلة النقل الخاصة بك </h2>
+            <p><a href="{% url 'signup' %}"
+                class="btn btn-primary d-flex justify-content-center align-items-center align-bottom">التسجيل</a></p>
+          </div>
+          <div class="col-lg-4 border border-secondary-subtle">
+            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/icons.gif' %}">
+            <h2 class="fs-4 fw-medium pt-3 pb-3">ارسال طلب داخلي</h2>
+            <p><a class="btn btn-primary d-flex justify-content-center align-items-center align-bottom"
+                href="{% url 'request' %}">طلب</a></p>
+          </div>
+          <div class="col-lg-4 border border-secondary-subtle">
+            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/truck3.svg' %}">
+            <h2 class="fs-4 fw-medium pt-3 pb-3">إرسال الطرود إلى أوروبا</h2>
+            <p><a class="btn btn-primary d-flex justify-content-center align-items-center align-bottom "
+                href="{% url 'europ' %}">طلب</a></p>
+          </div>
+        </div>
+    </main>
+  </div>
+
+</main>
+{% endblock %}

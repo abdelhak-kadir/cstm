@@ -1,0 +1,441 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title> لوحة القيادة </title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard-rtl/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static '/assets/dist/css/bootstrap.rtl.min.css' %}">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #5c5e61;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+        }
+
+        .count {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 767px) {
+            .circle {
+                width: 120px;
+                height: 120px;
+                font-size: 18px;
+                margin-right: 0;
+                /* Remove right margin for mobile view */
+            }
+
+            .count {
+                font-size: 24px;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static '/css/dashboard.rtl.css'%}" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand bg-dark col-md-3 col-lg-2 me-0 px-3" href="{% url 'dashboard' %}">C.S.T.L</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="عرض/إخفاء لوحة التنقل">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="form-control bg-dark  w-100"></a>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3" href="#">تسجيل الخروج</a>
+            </div>
+        </div>
+    </header>
+
+
+
+    </div>
+    <hr>
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span data-feather="home"></span>
+                                لوحة القيادة
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'home'%}">
+                                <span data-feather="file"></span>
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'signup'%}">
+                                <span data-feather="shopping-cart"></span>
+                                التسجيل
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'request'%}">
+                                <span data-feather="users"></span>
+                                الطلبات المحلية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'europ'%}">
+                                <span data-feather="bar-chart-2"></span>
+                                الطلبات الدولية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'news' %}">
+                                <span data-feather="layers"></span>
+                                الاخبار
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">لوحة القيادة</h1>
+                </div>
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-4  col-4 d-flex justify-content-center">
+                            <div class="circle ">
+                                <span class="count">{{trans}}</span>
+                                <span class="label">سائقي الشاحنات</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-4 d-flex justify-content-center">
+                            <div class="circle">
+                                <span class="count">{{trans1}}</span>
+                                <span class="label">الطلبات المحلية</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-4 d-flex justify-content-center">
+                            <div class="circle">
+                                <span class="count">{{trans2}}</span>
+                                <span class="label">الطلبات الدولية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height: 120px;">
+                    <div class="row">
+                        <div class="table-responsive-sm">
+                            <div class="col-md">
+                                <h5 class="text-center">سائقي الشاحنات</h5>
+
+                                <table class="table table-secondary table-striped-columns">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">الاسم العائلي </th>
+                                            <th scope="col">اللقب</th>
+                                            <th scope="col">CNI</th>
+                                            <th scope="col">تاريخ الميلاد</th>
+                                            <th scope="col">الحنس</th>
+                                            <th scope="col">البريد الالكتروني</th>
+                                            <th scope="col">رقم الهاتف </th>
+                                            <th scope="col">وزن الحمولة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for i in transporteur %}
+                                        <tr>
+                                            <td>{{i.id}} </td>
+                                            <td>{{i.prenom}} </td>
+                                            <td>{{i.name}} </td>
+                                            <td>{{i.nickname}} </td>
+                                            <td>{{i.cni}} </td>
+                                            <td>{{i.birth_date}} </td>
+                                            <td>{{i.gender}} </td>
+                                            <td>{{i.email}} </td>
+                                            <td>{{i.phone_number}} </td>
+                                            <td>{{i.weight}} </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                        <div class="pagination d-flex justify-content-center">
+                            <ul class="pagination justify-content-center">
+
+                                {% if transporteur.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="?dashboard={{ transporteur.previous_page_number }}">السابق</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">السابق</span>
+                                </li>
+                                {% endif %}
+
+                                {% for num in transporteur.paginator.page_range %}
+                                {% if transporteur.number == num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }}</span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?dashboard={{ num }}">{{ num }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if transporteur.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="?dashboard={{ transporteur.next_page_number }}">التالي</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">التالي</span>
+                                </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="table-responsive-sm">
+                            <div class="col-md">
+                                <h5 class="text-center"> الطلبات المحلية</h5>
+                                <table class="table table-secondary table-striped-columns">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">الاسم العائلي </th>
+                                            <th scope="col">CNI</th>
+                                            <th scope="col">البريد الالكتروني</th>
+                                            <th scope="col">رقم الهاتف </th>
+                                            <th scope="col">وزن الحمولة</th>
+                                            <th scope="col">نوع الحمولة</th>
+                                            <th scope="col">من</th>
+                                            <th scope="col">إلى</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in transporteur1 %}
+                                        <tr>
+                                            <td>{{i.id}} </td>
+                                            <td>{{i.prenom}} </td>
+                                            <td>{{i.name}} </td>
+                                            <td>{{i.cni}} </td>
+                                            <td>{{i.email}} </td>
+                                            <td>{{i.phone_number}} </td>
+                                            <td>{{i.weight}}kg</td>
+                                            <td>{{i.type_colis}} </td>
+                                            <td>{{i.from_colis}} </td>
+                                            <td>{{i.to_colis}} </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pagination d-flex justify-content-center">
+                            <ul class="pagination justify-content-center">
+
+                                {% if transporteur1.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="?dashboard={{ transporteur1.previous_page_number }}">السابق</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">السابق</span>
+                                </li>
+                                {% endif %}
+
+                                {% for num in transporteur1.paginator.page_range %}
+                                {% if transporteur1.number == num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }}</span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?dashboard={{ num }}">{{ num }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if transporteur1.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        href="?dashboard={{ transporteur1.next_page_number }}">التالي</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">التالي</span>
+                                </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="table-responsive-sm">
+                            <div class="col-md">
+                                <h5 class="text-center"> الطلبات الدولية</h5>
+
+                                <table class="table table-secondary table-striped-columns">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">الاسم العائلي </th>
+                                            <th scope="col">CNI</th>
+                                            <th scope="col">البريد الالكتروني</th>
+                                            <th scope="col">رقم الهاتف </th>
+                                            <th scope="col">البلد المرسل إلبه</th>
+                                            <th scope="col">وزن الحمولة</th>
+                                            <th scope="col">نوع الحمولة</th>
+                                            <th scope="col">من</th>
+                                            <th scope="col">إلى</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for i in transporteur2 %}
+                                        <tr>
+                                            <td>{{i.id}} </td>
+                                            <td>{{i.prenom}} </td>
+                                            <td>{{i.name}} </td>
+                                            <td>{{i.cni}} </td>
+                                            <td>{{i.email}} </td>
+                                            <td>{{i.phone_number}} </td>
+                                            <td>{{i.contry}} </td>
+                                            <td>{{i.weight}}kg</td>
+                                            <td>{{i.type_colis}} </td>
+                                            <td>{{i.from_colis}} </td>
+                                            <td>{{i.to_colis}} </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination d-flex justify-content-center">
+                        <ul class="pagination justify-content-center">
+
+                            {% if transporteur2.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="?dashboard={{ transporteur2.previous_page_number }}">السابق</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">السابق</span>
+                            </li>
+                            {% endif %}
+
+                            {% for num in transporteur2.paginator.page_range %}
+                            {% if transporteur2.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?dashboard={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if transporteur2.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?dashboard={{ transporteur2.next_page_number }}">التالي</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">التالي</span>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        </main>
+    </div>
+    </div>
+
+
+    <script src="{% static '/assets/dist/js/bootstrap.bundle.min.js'%}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js"
+        integrity="sha384-EbSscX4STvYAC/DxHse8z5gEDaNiKAIGW+EpfzYTfQrgIlHywXXrM9SUIZ0BlyfF"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+        integrity="sha384-i+dHPTzZw7YVZOx9lbH5l6lP74sLRtMtwN2XjVqjf3uAGAREAF4LMIUDTWEVs4LI"
+        crossorigin="anonymous"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

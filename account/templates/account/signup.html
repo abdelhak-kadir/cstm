@@ -1,0 +1,210 @@
+{% extends "account/main.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #93aafb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to bottom right, rgb(38, 67, 227), rgb(75, 65, 155));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to bottom right, rgb(12, 53, 111), rgb(112, 132, 232))
+    }
+
+    .navbar-logo {
+        max-height: 50px;
+    }
+
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+
+    .card-registration .select-arrow {
+        top: 13px;
+    }
+
+    img {
+        width: 150px;
+    }
+
+    /* IMAGE STYLES */
+    [type=radio]+img {
+        cursor: pointer;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked+img {
+        outline: 2px solid #f00;
+    }
+</style>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+</svg>
+<form action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100" style="padding-top: 0rem!important;">
+
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">إستمارة التسجيل</h3>
+                            <form>
+                                <div class="row">
+                                    <div class="row">
+                                        {% for message in messages %}
+                                        <div class="alert alert-success d-flex justify-content-center" role="alert">
+                                            {{message}}<a href="tel:123-456-7890">0679399021 </a>
+
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="firstName" name="prenom"
+                                                class="form-control form-control-lg" placeholder=" الاسم" />
+                                            <label class="form-label" for="firstName"></label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="lastName" name="name"
+                                                class="form-control form-control-lg" placeholder="اسم العائلة" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="username" name="nickname"
+                                                class="form-control form-control-lg" placeholder="اللقب" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="lastName" name="cni"
+                                                class="form-control form-control-lg"
+                                                placeholder="رقم البطاقة الوطنية" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                                        <div class="form-outline datepicker w-100">
+                                            <label for="birthdayDate" class="form-label">تاريخ الميلاد</label>
+                                            <input type="date" class="form-control form-control-lg" name="birth_date"
+                                                id="birthdayDate" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <h6 class="mb-2 pb-1">الجنس :</h6>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
+                                                value="Female" checked />
+                                            <label class="form-check-label" for="femaleGender">أنثى</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                                                value="Male" />
+                                            <label class="form-check-label" for="maleGender">ذكر</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="email" id="emailAddress" name="email"
+                                                class="form-control form-control-lg" placeholder=" بريدإلكتروني" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="tel" id="phoneNumber" name="phone_number"
+                                                class="form-control form-control-lg" placeholder="رقم الهاتف" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <select class="form-select form-select-lg mb-3"
+                                                aria-label="Default select example" name="weight">
+                                                <option selected>select</option>
+                                                <option value="3.5t-baché">3.5t baché</option>
+                                                <option value="3.5t-plateau">3.5t plateau</option>
+                                                <option value="3.5t-plateau-ridal">3.5t plateau ridal</option>
+                                                <option value="3.5t-avec-grue">3.5t avec grue</option>
+                                                <option value="3.5t-fourgon">3.5t fourgon</option>
+                                                <option value="7.5t-baché">7.5t baché</option>
+                                                <option value="7.5t-plateau">7.5t plateau</option>
+                                                <option value="7.5t-plateau-ridal">7.5t plateau ridal</option>
+                                                <option value="7.5t-avec-grue">7.5t avec grue</option>
+                                                <option value="7.5t-fourgon">7.5t fourgon</option>
+                                                <option value="10t-baché">10t baché</option>
+                                                <option value="10t-plateau">10t plateau</option>
+                                                <option value="10t-plateau-ridal">10t plateau ridal</option>
+                                                <option value="10t-avec-grue">10t avec grue</option>
+                                                <option value="10t-fourgon">10t fourgon</option>
+                                                <option value="14t-baché">14t baché</option>
+                                                <option value="14t-plateau">14t plateau</option>
+                                                <option value="14t-plateau-ridal">14t plateau ridal</option>
+                                                <option value="14t-avec-grue">14t avec grue</option>
+                                                <option value="14t-fourgon">14t fourgon</option>
+                                                <option value="19t-baché">+19t baché</option>
+                                                <option value="19t-plateau">+19t plateau</option>
+                                                <option value="19t-plateau-ridal">+19t plateau ridal</option>
+                                                <option value="19t-avec-grue">+19t avec grue</option>
+                                                <option value="19t-fourgon">+19t fourgon</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mt-2 pt-2 text-center">
+                                    <button class="btn btn-primary btn-lg" name="btnsignup" type="submit"
+                                        value="Submit">تأكيد</button>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+{% endblock %}

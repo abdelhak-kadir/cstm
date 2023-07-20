@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/dist/css/bootstrap.rtl.min.css' %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel-rtl/">
+    <link rel="stylesheet" href="{% static '/css/carousel.rtl.css' %}">
+
+</head>
+
+<body>
+    {% include "account/navbar.html" %}
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% include "account/footer.html" %}
+</body>
+<script src="{% static '/assets/dist/js/bootstrap.bundle.min.js'%}"></script>
+
+
+</html>
