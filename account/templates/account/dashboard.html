@@ -35,7 +35,7 @@
         .circle {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
+
             background-color: #5c5e61;
             display: flex;
             flex-direction: column;
@@ -57,18 +57,9 @@
             margin-top: 5px;
         }
 
-        @media (max-width: 767px) {
-            .circle {
-                width: 120px;
-                height: 120px;
-                font-size: 18px;
-                margin-right: 0;
-                /* Remove right margin for mobile view */
-            }
 
-            .count {
-                font-size: 24px;
-            }
+        .count {
+            font-size: 24px;
         }
     </style>
 
@@ -138,9 +129,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'news' %}">
+                            <a class="nav-link" href="{% url 'News' %}">
                                 <span data-feather="layers"></span>
                                 الاخبار
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tube' %}">
+                                <span data-feather="layers"></span>
+                                فيديوهات
                             </a>
                         </li>
                     </ul>
@@ -151,30 +148,49 @@
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">لوحة القيادة</h1>
                 </div>
-                <div class="container">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-4  col-4 d-flex justify-content-center">
-                            <div class="circle ">
-                                <span class="count">{{trans}}</span>
-                                <span class="label">سائقي الشاحنات</span>
+                <div class="row">
+                    <div class="col-md-3 mb-3 d-flex justify-content-center">
+                        <div class="card text-bg-secondary  m-md-3 mb-3 p-2"
+                            style="max-width: 18rem ; margin:5px;border:none;">
+                            <div class="card-header fs-3 d-flex justify-content-center"
+                                style="background-color: #8a96a1;">{{trans}}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">سائقي الشاحنات</h5>
                             </div>
                         </div>
-
-                        <div class="col-md-4 col-4 d-flex justify-content-center">
-                            <div class="circle">
-                                <span class="count">{{trans1}}</span>
-                                <span class="label">الطلبات المحلية</span>
+                    </div>
+                    <div class="col-md-3 mb-3 d-flex justify-content-center">
+                        <div class="card text-bg-secondary  m-md-3 mb-3 p-2"
+                            style="max-width: 18rem ; margin:5px;border:none;">
+                            <div class="card-header fs-3 d-flex justify-content-center"
+                                style="background-color: #8a96a1;">{{trans1}}</div>
+                            <div class="card-body">
+                                <h5 class="card-title"> الطلبات المحلية</h5>
                             </div>
                         </div>
-
-                        <div class="col-md-4 col-4 d-flex justify-content-center">
-                            <div class="circle">
-                                <span class="count">{{trans2}}</span>
-                                <span class="label">الطلبات الدولية</span>
+                    </div>
+                    <div class="col-md-3 mb-3 d-flex justify-content-center">
+                        <div class="card text-bg-secondary   m-md-3 mb-3 p-2"
+                            style="max-width: 18rem ; margin:5px;border:none;">
+                            <div class="card-header fs-3 d-flex justify-content-center "
+                                style="background-color: #8a96a1;">{{trans2}}</div>
+                            <div class="card-body">
+                                <h5 class="card-title"> الطلبات الدولية</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 d-flex justify-content-center">
+                        <div class="card text-bg-secondary  m-md-3 mb-3 p-2"
+                            style="max-width: 11rem ; margin:5px;border:none;">
+                            <div class="card-header fs-3 d-flex justify-content-center"
+                                style="background-color: #8a96a1;">{{trans3}}</div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">طلبات البطاقة المهنية </h5>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div style="min-height: 120px;">
                     <div class="row">
                         <div class="table-responsive-sm">
@@ -186,14 +202,13 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">الاسم</th>
-                                            <th scope="col">الاسم العائلي </th>
-                                            <th scope="col">اللقب</th>
-                                            <th scope="col">CNI</th>
-                                            <th scope="col">تاريخ الميلاد</th>
-                                            <th scope="col">الحنس</th>
+                                            <th scope="col">اللقب </th>
+                                            <th scope="col">ICE</th>
                                             <th scope="col">البريد الالكتروني</th>
                                             <th scope="col">رقم الهاتف </th>
-                                            <th scope="col">وزن الحمولة</th>
+                                            <th scope="col">اسم الشركة</th>
+                                            <th scope="col"> نوع النقل المتوفر لدى الشركة </th>
+                                            <th scope="col">المسير</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -203,13 +218,12 @@
                                             <td>{{i.id}} </td>
                                             <td>{{i.prenom}} </td>
                                             <td>{{i.name}} </td>
-                                            <td>{{i.nickname}} </td>
-                                            <td>{{i.cni}} </td>
-                                            <td>{{i.birth_date}} </td>
-                                            <td>{{i.gender}} </td>
+                                            <td>{{i.ICE}} </td>
                                             <td>{{i.email}} </td>
                                             <td>{{i.phone_number}} </td>
+                                            <td>{{i.company}} </td>
                                             <td>{{i.weight}} </td>
+                                            <td>{{i.encadrement}} </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -289,11 +303,24 @@
                                             <td>{{i.email}} </td>
                                             <td>{{i.phone_number}} </td>
                                             <td>{{i.weight}}kg</td>
-                                            <td>{{i.type_colis}} </td>
+                                            <td class="text-center">
+                                                {% if i.type_colis %}
+
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    style="border:none">
+                                                    <a class="link-offset-2 link-underline link-underline-opacity-0 "
+                                                        href="{{ i.type_colis.url }}" download
+                                                        style="color: black;">{{i.name}}</a>
+                                                </button>
+                                                {% else %}
+                                                No Image Available
+                                                {% endif %}
+                                            </td>
                                             <td>{{i.from_colis}} </td>
                                             <td>{{i.to_colis}} </td>
                                         </tr>
                                         {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -372,7 +399,19 @@
                                             <td>{{i.phone_number}} </td>
                                             <td>{{i.contry}} </td>
                                             <td>{{i.weight}}kg</td>
-                                            <td>{{i.type_colis}} </td>
+                                            <td class="text-center">
+                                                {% if i.type_colis %}
+
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    style="border:none">
+                                                    <a class="link-offset-2 link-underline link-underline-opacity-0 "
+                                                        href="{{ i.type_colis.url }}" download
+                                                        style="color: black;">{{i.name}}</a>
+                                                </button>
+                                                {% else %}
+                                                No Image Available
+                                                {% endif %}
+                                            </td>
                                             <td>{{i.from_colis}} </td>
                                             <td>{{i.to_colis}} </td>
                                         </tr>
@@ -411,6 +450,110 @@
                             {% if transporteur2.has_next %}
                             <li class="page-item">
                                 <a class="page-link" href="?dashboard={{ transporteur2.next_page_number }}">التالي</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">التالي</span>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="table-responsive-sm">
+                            <div class="col-md">
+                                <h5 class="text-center"> طلبات البطاقة المهنية </h5>
+
+                                <table class="table table-secondary table-striped-columns">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">الاسم العائلي </th>
+                                            <th scope="col">CNI</th>
+                                            <th scope="col">رقم الهاتف </th>
+                                            <th scope="col">رخصة السياقة</th>
+                                            <th scope="col">الفحص الطبي</th>
+                                            <th scope="col">المدينة</th>
+                                            <th scope="col">صنف البطاقة</th>
+                                            <th scope="col">نوع التكوين</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for i in transporteur3 %}
+                                        <tr>
+                                            <td>{{i.id}} </td>
+                                            <td>{{i.prenom}} </td>
+                                            <td>{{i.nom}} </td>
+                                            <td>{{i.cni}} </td>
+                                            <td>{{i.phone}} </td>
+                                            <td class="text-center">
+                                                {% if i.permis %}
+
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    style="border:none">
+                                                    <a class="link-offset-2 link-underline link-underline-opacity-0 "
+                                                        href="{{ i.permis.url }}" download
+                                                        style="color: black;">{{i.nom}}</a>
+                                                </button>
+                                                {% else %}
+                                                No Image Available
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                                {% if i.visite_medicale %}
+
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    style="border:none">
+                                                    <a class="link-offset-2 link-underline link-underline-opacity-0 "
+                                                        href="{{ i.visite_medicale.url }}" download
+                                                        style="color: black;">{{i.nom}}</a>
+                                                </button>
+                                                {% else %}
+                                                No Image Available
+                                                {% endif %}
+                                            </td>
+                                            <td>{{i.ville}} </td>
+                                            <td>{{i.type_carte}} </td>
+                                            <td>{{i.formation_carte}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination d-flex justify-content-center">
+                        <ul class="pagination justify-content-center">
+
+                            {% if transporteur3.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="?dashboard={{ transporteur3.previous_page_number }}">السابق</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">السابق</span>
+                            </li>
+                            {% endif %}
+
+                            {% for num in transporteur3.paginator.page_range %}
+                            {% if transporteur3.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?dashboard={{ num }}">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if transporteur3.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?dashboard={{ transporteur3.next_page_number }}">التالي</a>
                             </li>
                             {% else %}
                             <li class="page-item disabled">

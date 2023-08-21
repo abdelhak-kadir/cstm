@@ -1,20 +1,18 @@
 from django.db import models
 from datetime import datetime
-
+from embed_video.fields import EmbedVideoField
 # Create your models here.
+
+
 class person(models.Model):
-    gender = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    name = models.CharField(max_length=200 , null=True)
-    prenom = models.CharField(max_length=200, null=True)
-    nickname = models.CharField(max_length=200, null=True)
-    cni = models.CharField(max_length=200, null=True)
-    birth_date = models.DateField()
-    gender = models.CharField(max_length=10, null=True , choices=gender)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=20, null=True)
+    
+    name = models.CharField(max_length=200 , default='CSTM')
+    prenom = models.CharField(max_length=200, default='CSTM')
+    ICE = models.CharField(max_length=200, unique=True,default='CSTM')
+    company = models.CharField(max_length=200, default='CSTM')
+    encadrement = models.CharField(max_length=200, default='CSTM')
+    email = models.EmailField(default='CSTM')
+    phone_number = models.CharField(max_length=20, default='CSTM')
     weight_choices=(
          ('3.5t-bache', '3.5t Bachè'),
         ('3.5t-plateau', '3.5t Plateau'),
@@ -42,7 +40,7 @@ class person(models.Model):
         ('19t-avec-grue', '19t Avec Grue'),
         ('19t-fourgon', '19t Fourgon'),
     )
-    weight = models.CharField(max_length=20 , null=True, choices=weight_choices)
+    weight = models.CharField(max_length=20 ,  default='CSTM', choices=weight_choices)
     published_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
@@ -54,7 +52,7 @@ class order(models.Model):
     cni = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=200, null=True)
     phone_number = models.CharField(max_length=20, null=True)
-    type_colis = models.CharField(max_length=200, null=True)
+    type_colis = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     from_colis = models.CharField(max_length=100, null=True)
     to_colis = models.CharField(max_length=100, null=True)
@@ -75,16 +73,16 @@ class order_europ(models.Model):
     name = models.CharField(max_length=200, null=True)
     prenom = models.CharField(max_length=200, null=True)
     cni = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=20 , null=True)
-    phone_number = models.CharField(max_length=20, null=True)
-    contry = models.CharField(max_length=20, null=True , choices=contry_choices)
-    type_colis = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200 , null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+    contry = models.CharField(max_length=200, null=True , choices=contry_choices)
+    type_colis = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     from_colis = models.CharField(max_length=100, null=True)
     to_colis = models.CharField(max_length=100, null=True)
     published_date = models.DateTimeField(default=datetime.now)
 
-    def __str__(self):
+    def __str__(self): 
         return self.name + " " + self.prenom
     
 class adminstation(models.Model):
@@ -102,3 +100,47 @@ class news(models.Model):
     published_date = models.DateTimeField(default=datetime.now)
     def __str__(self):
         return self.title
+    
+class carte(models.Model):
+    nom = models.CharField(max_length=200, null=True)
+    prenom = models.CharField(max_length=200,  null=True)
+    cni = models.CharField(max_length=200, unique=True, null=True)
+    type_choices=(
+        ('سيارات الأجرة', 'سيارات الأجرة'),
+        ('نقل البضائع', 'نقل البضائع'),
+        ('النقل الجماعي', 'النقل الجماعي'),
+        ('TGR/TLS', 'TGR/TLS'),
+    )
+    type_carte = models.CharField(max_length=200,unique=True, null=True , choices=type_choices)
+    formation_choices=(
+        ('FIMO','FIMO'),
+        ('FCO','FCO'),
+    )
+    formation_carte = models.CharField(max_length=200, null=True ,unique=True, choices=formation_choices)
+    permis = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
+    visite_medicale = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
+    phone=models.CharField(max_length=100 , null=True)
+    ville=models.CharField(max_length=100 , null=True)
+    published_date = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        full_name = ''
+        if self.nom:
+            full_name += self.nom
+        if self.prenom:
+            if full_name:
+                full_name += ' '
+            full_name += self.prenom
+        return full_name or 'Unnamed Carte'
+
+
+
+class video(models.Model):
+    title=models.CharField(max_length=200,null=True)
+    link=EmbedVideoField(null=True)
+
+    def __str__(self):
+           return self.title
+    
+
+    

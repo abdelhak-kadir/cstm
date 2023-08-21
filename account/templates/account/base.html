@@ -1,8 +1,204 @@
 {% extends "account/main.html" %}
 {% load static %}
+{% load embed_video_tags %}
 
 {% block content %}
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصفحة الرئيسية</title>
+</head>
+
+<style>
+  td {
+    background-color: rgba(128, 128, 128, 0.386)
+  }
+
+  body {
+    background-color: rgba(128, 128, 128, 0.386)
+  }
+
+  footer {
+    background-color: rgba(128, 128, 128, 0.386)
+  }
+
+  /* Medium screen (768px and up) */
+  @media (min-width: 768px) {
+    .col-lg-3 {
+      width: 50%;
+    }
+
+  }
+
+  #link {
+    text-decoration: none;
+    border: none;
+    color: black;
+  }
+
+  #link:hover {
+    background-color: rgba(205, 205, 205, 0.633);
+    color: black;
+    border-radius: 25%;
+  }
+
+  .background-image {
+
+    background-size: contain;
+    /* Add any other background-related styling here */
+  }
+
+  @media (max-width: 576px) {
+    .carousel-caption {
+      position: static;
+      /* Change the position property */
+      /* Add any other styling you need for the caption on mobile */
+    }
+  }
+
+  .carousel-caption {
+    position: static;
+    /* Change the position property */
+    /* Add any other styling you need for the caption on mobile */
+  }
+
+  @media (max-width: 768px) {
+    .carousel-inner video {
+      max-width: 100%;
+      /* Limit video width to its container */
+      height: auto;
+      /* Maintain video aspect ratio */
+      /* Add any additional styling specific to mobile views */
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .col-xl-3 {
+      flex: 0 0 auto;
+      width: 45%;
+    }
+  }
+
+  .carousel-inner video {
+    max-width: 100%;
+    /* Limit video width to its container */
+    height: auto;
+    /* Maintain video aspect ratio */
+  }
+
+  .wr {
+    width: 45% !important;
+    padding-right: 26px;
+  }
+</style>
 <!---->
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-theme="light">
+  <div class="carousel-indicators">
+    {% for i in liste %}
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}
+      class="active" {% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner ">
+
+    {% for item in liste %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %} h-auto " data-bs-interval="10000">
+      <div class="background-image">
+        <video autoplay muted class="object-fit-contain">
+          <source src="{% static 'images/cstm7.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 class="fs-6 text-start fw-bold d-none d-md-block text-center" style="color: black;">{{ item.title }}</h1>
+          <h1 class="fs-6 text-start fw-bold d-md-none text-center " style="color: black;">{{ item.title }}</h1>
+          <p class="opacity-75 fs-6 text-start d-none d-md-block text-center"
+            style="color: rgb(24, 23, 23); font-weight:bold ">
+            {{ item.description }}
+          </p>
+          <p class="opacity-75 fs-6 text-start d-md-none text-center" style="color: black;">{{ item.description }}</p>
+          <p><a class="btn btn-lg btn-primary" href="{{ item.link }}" target="_blank"> اكتشف</a></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class=" carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class=" bg-secondary carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">السابق</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="bg-secondary carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">التالي</span>
+  </button>
+</div>
+<hr>
+
+<div class="container d-flex justify-content-center">
+
+  <a id="link" href="#">
+    <h1>قناة :InfoTrans</h1>
+  </a>
+
+
+</div>
+
+<!--
+
+-->
+
+
+
+
+{%for i in transporteur%}
+<div class=" d-flex justify-content-center my-3 mb-5">
+  {% video i.link '560x315' %}
+</div>
+<h5 class="text-center my-3 mb-5">{{i.title}}</h5>
+{% endfor %}
+
+<div class="pagination  justify-content-center">
+  <ul class="pagination justify-content-center">
+
+    {% if transporteur.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?home={{ transporteur.previous_page_number }}">السابق</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">السابق</span>
+    </li>
+    {% endif %}
+
+    {% for num in transporteur.paginator.page_range %}
+    {% if transporteur.number == num %}
+    <li class="page-item active">
+      <span class="page-link">{{ num }}</span>
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="?home={{ num }}">{{ num }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+    {% if transporteur.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?home={{ transporteur.next_page_number }}">التالي</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <span class="page-link">التالي</span>
+    </li>
+    {% endif %}
+
+  </ul>
+</div>
+
+
+<!--
 <div id="myCarousel" class=" carousel slide" data-bs-ride="carousel" data-bs-theme="light">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -80,101 +276,204 @@
     <span class="visually-hidden">التالي</span>
   </button>
 </div>
+-->
+<hr>
+<main class="mt-5">
+  <h2 class="text-center"> الخدمات الإلكترونية
+  </h2>
+  <div class="container marketing">
+    <main class="mt-5 mb-5">
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-lg-3 border-none d-flex flex-column align-items-center">
+            <img class="mx-auto d-block" width="100" height="100"
+              src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-driver-manufacture-process-inipagistudio-mixed-inipagistudio.png"
+              alt="" />
+            <h2 class="fs-4 fw-medium pt-3 pb-3 text-center">شركات نقل البضائع</h2>
+            <p><a href="{% url 'signup' %}" class="btn btn-primary btn-custom-width">التسجيل</a></p>
+          </div>
+          <div class="col-lg-3 border-none d-flex flex-column align-items-center">
+            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/icon.png' %}">
+            <h2 class="fs-4 fw-medium pt-3 pb-3 text-center">ارسال البضائع بالمغرب</h2>
+            <p><a class="btn btn-primary btn-custom-width" href="{% url 'request' %}">طلب</a></p>
+          </div>
+          <div class="col-lg-3 border-none d-flex flex-column align-items-center">
+            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/truck3.svg' %}">
+            <h2 class="fs-4 fw-medium pt-3 pb-3 text-center">إرسال الطرود إلى أوروبا</h2>
+            <p><a class="btn btn-primary btn-custom-width" href="{% url 'europ' %}">طلب</a></p>
+          </div>
+          <div class="col-lg-3 border-none   d-flex flex-column align-items-center">
+            <img class="mx-auto d-block" width="100" height="100"
+              src="https://img.icons8.com/ios/50/identification-documents.png">
+            <h2 class="fs-4 fw-medium pt-3 pb-3 text-center">البطاقة المهنية</h2>
+            <p><a class="btn btn-primary btn-custom-width" href="{% url 'carte' %}">طلب</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-<main>
-  <div class="container ">
+
+  <hr class="mb-5">
+
+  <div class="container mb-5">
     <h2 class="text-center">المعلومات الرئيسية عن النقل والخدمات اللوجستية</h2>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>المواضيع</th>
-        </tr>
-      </thead>
+
       <tbody>
         <tr>
-          <td>نقل المواد التي يسرع إليها التلف</td>
-          <td><a href="{% static 'pdf/PDF1.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">نقل مواد سريعة التلف </td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF1.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>آلات نقل المواد التي يسرع إليها التلف</td>
-          <td><a href="{% static 'pdf/PDF2.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">آليات مواد سريعة التلف</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF2.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>الاتفاقية حول عقد النقل الدولي للبضائع بالطرق</td>
-          <td><a href="{% static 'pdf/PDF3.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">الاتفاقية حول عقد النقل الدولي للبضائع بالطرق</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF3.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>العقد النموذجي لنقل البضائع عبر الطرق</td>
-          <td><a href="{% static 'pdf/PDF4.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">العقد النموذجي لنقل البضائع عبر الطرق</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF4.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>الكرونوتاكيغراف الرقمي</td>
-          <td><a href="{% static 'pdf/PDF5.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">الكرونوتاكيغراف الرقمي</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF5.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>النقل الخاص الجماعي للأشخاص</td>
-          <td><a href="{% static 'pdf/PDF6.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">النقل الخاص الجماعي للأشخاص</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF6.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>قرار رقم 2675.14 : يتعلق بالصهاريج، والحاويات والخزانات المستعملة كوعاء للقياس</td>
-          <td><a href="{% static 'pdf/PDF7.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">قرار رقم 2675.14 : يتعلق بالصهاريج، والحاويات
+            والخزانات المستعملة كوعاء للقياس</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF7.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>دفتر التحملات المتعلق باستغلال خدمات النقل المزدوج بالعالم القروي</td>
-          <td><a href="{% static 'pdf/PDF8.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">دفتر التحملات المتعلق باستغلال خدمات النقل المزدوج
+            بالعالم القروي</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF8.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>دفتر التحملات المتعلق بالنقل المدرسي لحساب الغير</td>
-          <td><a href="{% static 'pdf/PDF9.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">دفتر التحملات المتعلق بالنقل المدرسي لحساب الغير
+          </td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF9.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>قرار رقم 5073 مميزات وشروط تهيئة سيارات النقل السياحي واستغلالها</td>
-          <td><a href="{% static 'pdf/PDF10.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">قرار رقم 5073 مميزات وشروط تهيئة سيارات النقل
+            السياحي واستغلالها</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF10.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>نقل الأشياء</td>
-          <td><a href="{% static 'pdf/PDF11.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">نقل الأشياء</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF11.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>نقل البضائع الخطرة عبر الطرق</td>
-          <td><a href="{% static 'pdf/PDF12.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">نقل البضائع الخطرة عبر الطرق</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF12.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
         <tr>
-          <td>نقل البضائع للحساب الخاص وللحساب الغير</td>
-          <td><a href="{% static 'pdf/PDF13.pdf' %}" class="btn btn-secondary">اكتشف</a></td>
+          <td style=" background-color: rgba(128, 128, 128, 0)">نقل البضائع للحساب الخاص وللحساب الغير</td>
+          <td style=" background-color: rgba(128, 128, 128, 0)"><a href="{% static 'pdf/PDF13.pdf' %}"
+              class="btn btn-secondary" target="_blank">اكتشف</a></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="container marketing">
-    <main class="mt-5 mb-5 ">
-      <div class="container marketing ">
-        <div class="row ">
-          <div class="col-lg-4 border border-secondary-subtle">
-            <img class="mx-auto d-block" width="100" height="100"
-              src="https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/64/000000/external-driver-manufacture-process-inipagistudio-mixed-inipagistudio.png"
-              alt="" />
 
-            <h2 class="fs-4 fw-medium pt-3 pb-3">سجل وسيلة النقل الخاصة بك </h2>
-            <p><a href="{% url 'signup' %}"
-                class="btn btn-primary d-flex justify-content-center align-items-center align-bottom">التسجيل</a></p>
-          </div>
-          <div class="col-lg-4 border border-secondary-subtle">
-            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/icons.gif' %}">
-            <h2 class="fs-4 fw-medium pt-3 pb-3">ارسال طلب داخلي</h2>
-            <p><a class="btn btn-primary d-flex justify-content-center align-items-center align-bottom"
-                href="{% url 'request' %}">طلب</a></p>
-          </div>
-          <div class="col-lg-4 border border-secondary-subtle">
-            <img class="mx-auto d-block" width="100" height="100" src="{% static 'images/truck3.svg' %}">
-            <h2 class="fs-4 fw-medium pt-3 pb-3">إرسال الطرود إلى أوروبا</h2>
-            <p><a class="btn btn-primary d-flex justify-content-center align-items-center align-bottom "
-                href="{% url 'europ' %}">طلب</a></p>
-          </div>
-        </div>
-    </main>
-  </div>
 
 </main>
+<hr>
+<!---->
+<footer class="text-center text-lg-start  text-muted">
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <div class="me-5 d-none d-lg-block">
+      <span> تواصل معنا على الشبكات الاجتماعية:</span>
+    </div>
+
+    <div>
+      <a href="https://web.facebook.com/profile.php?id=615500794802" class="me-4 text-reset ">
+        <i class="fab fa-facebook-f"><img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png"
+            alt="facebook-new" /></i>
+      </a>
+
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"><img width="48" height="48"
+            src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new" /></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"><img width="48" height="48" src="https://img.icons8.com/color/48/linkedin.png"
+            alt="linkedin" /></i>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="">
+    <div class="container text-center  mt-5">
+      <div class="row mt-3">
+        <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>عداد خدمات النقل واللوجستيات
+          </h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+          <div class="container">
+            <p class="">
+              أنفوترنز (infotrans)هي منصة أنشأت لتداول قضيا النقل و السياقة المهنية ؛ فهو خيار للباحثين عن أنماط النقل
+              سواء البضائع أو الأشخاص عن طريق الخدمات التي يقدمها الموقع عوض استنزاف الوقت في مثل هذه العمليات .و يقدم
+              الموقع أيضا خدمات للراغبين في الاستفسار والحصول على البطاقة المهنية دون عناء التنقل إلى مراكز التكوين
+              .ويضم الموقع أيضا قناة أنفوترانز(infotrans) بمثابة حلقة وصل لمناقشة و تداول قضايا مهنيي النقل و السياقة
+              المهنية و مناقشتها مع المهتمين و المتخصصين بالميدان .و يسهر على هذه المنصة تقنيين و مختصين في ميدان النقل
+              و السياقة المهنية رهن إشارة متصفحي الموقع .
+            </p>
+          </div>
+
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4 mx-auto   mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">تواصل</h6>
+          <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+          <p><i class="fas fa-home me-3"></i>العنوان : شارع الإمام إبن حنبل الزنقة 2 الرقم 7 تجزئة الحامدية حي القدس
+            البرنوصي الدارالبيضاء</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>البريد الالكتروني : informationtransportmaroc@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i>الهاتف الثابت : 0520568066</p>
+          <p><i class="fas fa-print me-3"></i>الهاتف المحمول: 0630191879</p>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4 mx-auto  mb-4">
+          <img class="wr" src="{% static 'images/logo.png' %}" alt="">
+          <img class="wr" src="{% static 'images/img1.png' %}" alt="">
+          <img class="wr" src="{% static 'images/img2.png' %}" alt="">
+          <img class="wr" src="{% static 'images/img3.png' %}" alt="">
+          <img class="wr" src="{% static 'images/img4.png' %}" alt="">
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright:
+    <a class="text-reset fw-bold" href="index.html">kadir</a>
+  </div>
+</footer>
+
 {% endblock %}

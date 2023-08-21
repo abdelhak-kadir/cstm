@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,76 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static '/assets/dist/css/bootstrap.rtl.min.css' %}">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #58585b !important;
+        }
+
+        .user_card {
+            width: 400px;
+            margin-top: auto;
+            margin-bottom: auto;
+            background: #40474b;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 5px;
+
+        }
+
+        .form_container {
+            margin-top: 20px;
+        }
+
+        #form-title {
+            color: #ffffff;
+
+        }
+
+        .login_btn {
+            width: 100%;
+            background: #2d2e36 !important;
+            color: white !important;
+        }
+
+        .login_btn:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+
+        .login_container {
+            padding: 0 2rem;
+        }
+
+        .input-group-text {
+            background: #545566 !important;
+            color: white !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        }
+
+        .input_user,
+        .input_pass:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+
+        #messages {
+            background-color: rgb(22, 169, 22);
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,6 +99,101 @@
             </div>
         </div>
     </header>
+    <div class="container-fluid d-md-none">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">
+                                <span data-feather="home"></span>
+                                لوحة القيادة
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'home'%}">
+                                <span data-feather="file"></span>
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'signup'%}">
+                                <span data-feather="shopping-cart"></span>
+                                التسجيل
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'request'%}">
+                                <span data-feather="users"></span>
+                                الطلبات المحلية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'europ'%}">
+                                <span data-feather="bar-chart-2"></span>
+                                الطلبات الدولية
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'News' %}">
+                                <span data-feather="layers"></span>
+                                الاخبار
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tube' %}">
+                                <span data-feather="layers"></span>
+                                فيديوهات
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+
+    <div class="container h-50">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+
+
+                    <h3 id="form-title">إضافة الأخبار</h3>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+
+                            <input type="text" name="title" placeholder="العنوان" class="form-control">
+                        </div>
+                        <div class="input-group mb-2 mt-4">
+
+                            <input type="text" name="description" placeholder="الوصف" class="form-control">
+                        </div>
+                        <div class="input-group mb-2 mt-4">
+
+                            <input type="text" name="link" placeholder="الرابط" class="form-control">
+                        </div>
+
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input class="btn login_btn" type="submit" value="تأكيد">
+                        </div>
+
+
+                        {% for message in messages %}
+                        <p id="messages">{{ message }}</p>
+                        {% endfor %}
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 

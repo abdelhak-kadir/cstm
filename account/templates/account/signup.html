@@ -1,56 +1,148 @@
 {% extends "account/main.html" %}
 {% load static %}
 {% block content %}
+
+
 <style>
-    .gradient-custom {
-        /* fallback for old browsers */
-        background: #93aafb;
-
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to bottom right, rgb(38, 67, 227), rgb(75, 65, 155));
-
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient(to bottom right, rgb(12, 53, 111), rgb(112, 132, 232))
-    }
-
-    .navbar-logo {
-        max-height: 50px;
-    }
-
-    .card-registration .select-input.form-control[readonly]:not([disabled]) {
-        font-size: 1rem;
-        line-height: 2.15;
-        padding-left: .75em;
-        padding-right: .75em;
-    }
-
-    .card-registration .select-arrow {
-        top: 13px;
-    }
-
-    img {
-        width: 150px;
-    }
-
-    /* IMAGE STYLES */
-    [type=radio]+img {
-        cursor: pointer;
-    }
-
-    /* CHECKED STYLES */
-    [type=radio]:checked+img {
-        outline: 2px solid #f00;
+    body {
+        background-color: rgba(128, 128, 128, 0.386)
     }
 </style>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="check-circle-fill" viewBox="0 0 16 16">
-        <path
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-    </symbol>
-</svg>
-<form action="{% url 'signup' %}" method="post">
-    {% csrf_token %}
 
+<div class="container ">
+    <main>
+        <div class="row my-3 ">
+            {% for msg in messages %}
+            {% if 'success' == msg.tags %}
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+                {{msg}}<a href="tel:123-456-7890">0679399021 </a>
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-center " role="alert">
+                {{msg}}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row g-3 justify-content-center  my-3 ">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3 text-center fs-2"> إستمارة تسجيل شركات نقل البضائع</h4>
+                <form action="{% url 'signup' %}" method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">الاسم الأول</label>
+                            <input type="text" class="form-control" name="prenom" id="firstName" placeholder="" value=""
+                                required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال اسم أول صحيح.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">اسم العائلة</label>
+                            <input type="text" class="form-control" name="name" id="lastName" placeholder="" value=""
+                                required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال اسم عائلة صحيح.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="address2" class="form-label"> رقم الهاتف</label>
+                            <input type="text" class="form-control" name="phone_number" id="phoneNumber" placeholder=""
+                                required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال رقم الهاتف
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">البريد الإلكتروني </label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text">@</span>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="you@example.com">
+                                <div class="invalid-feedback">
+                                    يرجى إدخال عنوان بريد إلكتروني صحيح .
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="ICE" class="form-label">ICE</label>
+                            <input type="text" class="form-control" name="ice" id="ICE" placeholder="" value=""
+                                required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال ICE صحيح.
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <label for="address" class="form-label">اسم الشركة</label>
+                            <input type="text" class="form-control" name="company" id="" placeholder="" required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال اسم الشركة.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="address2" class="form-label"> المسير أو المكلف بالتسيير </label>
+                            <input type="text" class="form-control" name="encadrement" id="" placeholder="" required>
+                            <div class="invalid-feedback">
+                                يرجى إدخال اسم المسير أو المكلف بالتسيير
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <label for="country" class="form-label">نوع النقل المتوفر لدى الشركة</label>
+                            <select class="form-select" name="weight" id="weight" required>
+                                <option value="">اختر...</option>
+                                <option value="3.5t-baché">3.5t baché</option>
+                                <option value="3.5t-plateau">3.5t plateau</option>
+                                <option value="3.5t-plateau-ridal">3.5t plateau ridal</option>
+                                <option value="3.5t-avec-grue">3.5t avec grue</option>
+                                <option value="3.5t-fourgon">3.5t fourgon</option>
+                                <option value="7.5t-baché">7.5t baché</option>
+                                <option value="7.5t-plateau">7.5t plateau</option>
+                                <option value="7.5t-plateau-ridal">7.5t plateau ridal</option>
+                                <option value="7.5t-avec-grue">7.5t avec grue</option>
+                                <option value="7.5t-fourgon">7.5t fourgon</option>
+                                <option value="10t-baché">10t baché</option>
+                                <option value="10t-plateau">10t plateau</option>
+                                <option value="10t-plateau-ridal">10t plateau ridal</option>
+                                <option value="10t-avec-grue">10t avec grue</option>
+                                <option value="10t-fourgon">10t fourgon</option>
+                                <option value="14t-baché">14t baché</option>
+                                <option value="14t-plateau">14t plateau</option>
+                                <option value="14t-plateau-ridal">14t plateau ridal</option>
+                                <option value="14t-avec-grue">14t avec grue</option>
+                                <option value="14t-fourgon">14t fourgon</option>
+                                <option value="19t-baché">+19t baché</option>
+                                <option value="19t-plateau">+19t plateau</option>
+                                <option value="19t-plateau-ridal">+19t plateau ridal</option>
+                                <option value="19t-avec-grue">+19t avec grue</option>
+                                <option value="19t-fourgon">+19t fourgon</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                يرجى اختيار نوع النقل .
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="w-100 btn btn-primary btn-lg my-5" type="submit">تأكيد </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</div>
+<!--
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100" style="padding-top: 0rem!important;">
 
@@ -58,7 +150,7 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">إستمارة التسجيل</h3>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 text-center"> إستمارة تسجيل شركات نقل البضائع </h3>
                             <form>
                                 <div class="row">
                                     <div class="row">
@@ -69,7 +161,7 @@
                                         </div>
                                         {% endfor %}
                                     </div>
-                                    <div class="col-md-6 mb-4">
+                                    <div class="col-md-6 ">
 
                                         <div class="form-outline">
                                             <input type="text" id="firstName" name="prenom"
@@ -82,65 +174,26 @@
 
                                         <div class="form-outline">
                                             <input type="text" id="lastName" name="name"
-                                                class="form-control form-control-lg" placeholder="اسم العائلة" />
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="row">
-
-                                    <div class="col-md-6 mb-4">
-
-                                        <div class="form-outline">
-                                            <input type="text" id="username" name="nickname"
                                                 class="form-control form-control-lg" placeholder="اللقب" />
                                         </div>
 
                                     </div>
+
+                                </div>
+                                <div class="row">
+
+
                                     <div class="col-md-6 mb-4">
 
                                         <div class="form-outline">
-                                            <input type="text" id="lastName" name="cni"
-                                                class="form-control form-control-lg"
-                                                placeholder="رقم البطاقة الوطنية" />
+                                            <input type="text" id="lastName" name="ice"
+                                                class="form-control form-control-lg" placeholder=" ICE" />
                                         </div>
 
                                     </div>
-                                </div>
 
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 d-flex align-items-center">
-
-                                        <div class="form-outline datepicker w-100">
-                                            <label for="birthdayDate" class="form-label">تاريخ الميلاد</label>
-                                            <input type="date" class="form-control form-control-lg" name="birth_date"
-                                                id="birthdayDate" />
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <h6 class="mb-2 pb-1">الجنس :</h6>
-
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
-                                                value="Female" checked />
-                                            <label class="form-check-label" for="femaleGender">أنثى</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="maleGender"
-                                                value="Male" />
-                                            <label class="form-check-label" for="maleGender">ذكر</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4 mb-4 pb-2">
+                                    <div class="col-md-6 mb-4 pb-2">
 
                                         <div class="form-outline">
                                             <input type="email" id="emailAddress" name="email"
@@ -148,7 +201,32 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-4 mb-4 pb-2">
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="from" name="company"
+                                                class="form-control form-control-lg" placeholder="اسم الشركة" />
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-2 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="to" name="encadrement"
+                                                class="form-control form-control-lg"
+                                                placeholder=" المسير أو المكلف بالتسيير " />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-4 pb-2">
 
                                         <div class="form-outline">
                                             <input type="tel" id="phoneNumber" name="phone_number"
@@ -156,12 +234,12 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-4 mb-4 pb-2">
+                                    <div class="col-md-6 mb-2    pb-2">
 
                                         <div class="form-outline">
                                             <select class="form-select form-select-lg mb-3"
                                                 aria-label="Default select example" name="weight">
-                                                <option selected>select</option>
+                                                <option selected> نوع النقل المتوفر لدى الشركة </option>
                                                 <option value="3.5t-baché">3.5t baché</option>
                                                 <option value="3.5t-plateau">3.5t plateau</option>
                                                 <option value="3.5t-plateau-ridal">3.5t plateau ridal</option>
@@ -192,19 +270,22 @@
 
                                     </div>
                                 </div>
-                                <div class="mt-2 pt-2 text-center">
-                                    <button class="btn btn-primary btn-lg" name="btnsignup" type="submit"
-                                        value="Submit">تأكيد</button>
 
-                                </div>
 
-                            </form>
                         </div>
+                        <div class="mt-2 mb-3 pt-2 text-center">
+                            <button class="btn btn-primary btn-lg" name="btnsignup" type="submit"
+                                value="Submit">تأكيد</button>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</form>
+</div>
+</section>
+-->
 
 {% endblock %}
