@@ -29,7 +29,7 @@ SECRET_KEY = config('MY_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('MY_DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['162.243.188.66']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -89,8 +89,11 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'cstmdb',
+        'USER':'postgres',
+        'PASSWORD':'5352',
+        'HOST':'localhost',
     }
 }
 
