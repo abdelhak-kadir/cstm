@@ -90,10 +90,15 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'cstmdb',
-        'USER':'postgres',
-        'PASSWORD':'5352',
-        'HOST':'localhost',
+        'NAME':'defaultdb',
+        'USER':'doadmin',
+        'PASSWORD':'AVNS_Xn5jpC99tbFYLSSAeiH',
+        "PORT": "25060",
+        'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
+        },
     }
 }
 

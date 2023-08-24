@@ -94,8 +94,8 @@ class adminstation(models.Model):
     
 
 class news(models.Model):
-    title=models.CharField(max_length=100)
-    description=models.CharField(max_length=200)
+    title=models.CharField(max_length=300)
+    description=models.CharField(max_length=300)
     link = models.CharField(max_length=300)
     published_date = models.DateTimeField(default=datetime.now)
     def __str__(self):
