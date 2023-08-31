@@ -10,7 +10,6 @@ The project aims to modernize and optimize freight services by integrating suita
 * **account/:** Contains the files related to project.
     - **migrations/:** Stores database migration files.
     - **templates/account/:** Contains templates for account-related views.
-    - **__init __.py:** Initialization file for the account app.
     - **admin.py:** Configuration for the admin interface related to accounts.
     - **apps.py:** App configuration for the account app.
     - **forms.py:** Contains forms for user input.
@@ -21,7 +20,6 @@ The project aims to modernize and optimize freight services by integrating suita
 * **static/:** Contains static files such as stylesheets, scripts, and images.
 * **trans/:** Contains files related to trans.
     - **.env:** Environment configuration file.
-    - **__init__ .py:** Initialization file for the trans app.
     - **asgi.py:** ASGI configuration for the trans app.
     - **settings.py:** Project settings for the trans app.
     - **urls.py:** URL routing for the trans app.
@@ -30,7 +28,6 @@ The project aims to modernize and optimize freight services by integrating suita
 * **db.sqlite3:** SQLite database file.
 * **manage.py:** Django management script.
 * **requirement.txt:** Lists the project's dependencies.
-* **README.md:** This file, providing an overview of the project and its structure.
 
 # Running the project
 To run the project, follow these steps:
@@ -51,7 +48,3 @@ To run the project, follow these steps:
     - `python manage.py makemigrations`
 
     - `python manage.py migrate`
-
-
-
-
