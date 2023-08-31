@@ -1,9 +1,7 @@
 # Table of Contents
 * Description
-* Directories and Files
-* Usage
-* Contributors
-* License
+* Project structure
+* Running the project
 # CSTM (comptoire service transport et massagerie)
 The project aims to modernize and optimize freight services by integrating suitable digital technologies. This will enhance the customer experience, streamline operations, and strengthen competitiveness in the transportation and freight industry.
 
