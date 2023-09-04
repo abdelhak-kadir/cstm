@@ -108,13 +108,13 @@ class carte(models.Model):
     type_choices=(
         ('سيارات الأجرة', 'سيارات الأجرة'),
         ('نقل البضائع', 'نقل البضائع'),
-        ('النقل الجماعي', 'النقل الجماعي'),
+        ('  النقل الجماعي للأشخاص', ' النقل الجماعي للأشخاص'),
         ('TGR/TLS', 'TGR/TLS'),
     )
     type_carte = models.CharField(max_length=200,unique=True, null=True , choices=type_choices)
     formation_choices=(
-        ('FIMO','FIMO'),
-        ('FCO','FCO'),
+        ('FIMO غير متوفر على بطاقة','FIMO غير متوفر على بطاقة'),
+        ('FCO  متوفر على بطاقة','FCO  متوفر على بطاقة'),
     )
     formation_carte = models.CharField(max_length=200, null=True ,unique=True, choices=formation_choices)
     permis = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True)
