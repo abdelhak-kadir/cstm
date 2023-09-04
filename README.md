@@ -35,15 +35,17 @@ To run the project, follow these steps:
     - `pip install upgrade`
 * install `python 3.11`
 * Clone the Repository:
-    - `git clone <repository_url>`
+    - `git clone https://github.com/abdelhak-kadir/cstm.git `
 
-    - `cd <project_directory>`
+    - `cd cstm `
 * Set Up Virtual Environment :
     - `python3 -m venv venv`
 
     - `source venv/bin/activate`
 * Install Dependencies:
     - ` pip install -r requirement.txt`
+* 
+
 * Apply Migrations: 
     - `python manage.py makemigrations`
 
