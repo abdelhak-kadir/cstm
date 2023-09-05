@@ -20,10 +20,12 @@ django-treebeard==4.7
 djangocms-admin-style==3.2.4
 djangocms-page-meta==1.3.0
 easy-thumbnails==2.8.5
+gunicorn==21.2.0
 idna==3.4
 lxml==4.9.3
 packaging==23.1
 Pillow==10.0.0
+psycopg2-binary==2.9.7
 python-decouple==3.8
 reportlab==4.0.4
 requests==2.31.0
