@@ -17,6 +17,7 @@ import sys
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
 
+from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,13 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+#ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'trans.dev'
+ROOT_URLCONF = 'trans.urls'
 
 TEMPLATES = [
     {
@@ -90,20 +90,35 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 
 
 # Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'defaultdb',
+        'USER':'doadmin',
+        'PASSWORD':'AVNS_Xn5jpC99tbFYLSSAeiH',
+        "PORT": "25060",
+        'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
+        },
+    }
+}
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("10.114.0.0/20", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("10.114.0.0/20")),
-    }
+#DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+
+#if DEVELOPMENT_MODE is True:
+    #DATABASES = {
+   #     "default": {
+  #          "ENGINE": "django.db.backends.sqlite3",
+  #          "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+ #       }
+ #elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+#    if os.getenv("DATABASE_URL  ", None) is None:
+#        raise Exception("DATABASE_URL environment variable not defined")
+#    DATABASES = {
+#        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+#    }
 
 
 # Password validation
