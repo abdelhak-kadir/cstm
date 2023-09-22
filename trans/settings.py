@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'cms',
     'menus',
     'treebeard',
-    
 ]
 
 SITE_ID = 1
@@ -69,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'trans.urls'
+ROOT_URLCONF = 'trans.dev'
 
 TEMPLATES = [
     {
