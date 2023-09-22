@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'cms',
     'menus',
     'treebeard',
+    'trans.dev',
 ]
 
 SITE_ID = 1
