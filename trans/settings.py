@@ -37,8 +37,8 @@ DEBUG = config('MY_DEBUG', cast=bool)
 
 
 #ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-ALLOWED_HOSTS = ['*']
-
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '146.190.158.237',]
 
 # Application definition
 INSTALLED_APPS = [
@@ -92,20 +92,31 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 
 
 # Database
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql',
+   #     'NAME':'defaultdb',
+    #    'USER':'doadmin',
+     ### 'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
+        #'OPTIONS': {
+         ##  'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
+      #  },
+   # }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'defaultdb',
-        'USER':'doadmin',
-        'PASSWORD':'AVNS_Xn5jpC99tbFYLSSAeiH',
-        "PORT": "25060",
-        'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
-        'OPTIONS': {
-            'sslmode': 'require',
-            'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
-        },
-    }
-}
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+          'NAME': 'testproject',
+          'USER': 'testuser',
+          'PASSWORD': 'testpassword',
+          'HOST': 'localhost',
+          'PORT': 5432,
+      }
+  }
+
+
+
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 #DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
