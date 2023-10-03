@@ -92,29 +92,29 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'defaultdb',
-        'USER':'doadmin',
-      'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
-        'OPTIONS': {
-           'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
-        },
-    }
-}
-
-
 #DATABASES = {
- #     'default': {
-  #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   #       'NAME': 'testproject',
-    #      'USER': 'testuser',
-     #     'PASSWORD': 'testpassword',
-      #    'HOST': 'localhost',
-       #   'PORT': 5432,
-      #}
-  #}
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql',
+   #     'NAME':'defaultdb',
+    #    'USER':'doadmin',
+     # 'HOST':'db-postgresql-fra1-25524-do-user-14508366-0.b.db.ondigitalocean.com',
+      #  'OPTIONS': {
+       #    'sslrootcert': 'trans/ca-certificate.crt',  # Same as used in PostgreSQL config
+        #},
+   # }
+#}
+
+
+DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+          'NAME': 'testproject',
+          'USER': 'testuser',
+          'PASSWORD': 'testpassword',
+          'HOST': 'localhost',
+          'PORT': 5432,
+      }
+  }
 
 
 
